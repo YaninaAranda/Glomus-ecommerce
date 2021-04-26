@@ -1,0 +1,18 @@
+
+body {
+  padding-top: 56px;
+}
+
+.navbar-collapse{
+  margin-left: 30vw;
+}
+
+.img-carrito{
+  width: 20%;
+  cursor: pointer;
+  margin-left: 1vw;
+}
+
+.listas{
+  margin-top: 5vw;
+}
