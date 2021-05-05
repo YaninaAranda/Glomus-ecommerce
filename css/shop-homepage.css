@@ -1,18 +1,79 @@
+*{
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
 
 body {
   padding-top: 56px;
 }
 
-.navbar-collapse{
-  margin-left: 30vw;
+ul{
+  list-style: none;
 }
 
-.img-carrito{
-  width: 20%;
-  cursor: pointer;
-  margin-left: 1vw;
-}
+
 
 .listas{
   margin-top: 5vw;
+}
+
+.nav-container { 
+  display: grid;
+  grid-template-columns: 0.5fr 2fr 0.5fr;
+  grid-template-rows: 0.5fr;
+  grid-template-areas:
+  "img navegador changuito";
+  padding-top: 1rem;
+  justify-content: center;
+  margin: 0vw 10vw;
+}
+
+.navegador{
+  grid-area: navegador;
+  justify-self: flex-end;
+}
+
+.img-logo{
+  grid-area: img;
+  width: 100%;
+}
+
+.changuito{
+  grid-area: changuito;
+  align-self: flex-end;
+  padding: 1rem;
+}
+.img-carrito{
+  width: 25%;
+  padding-right: 0.4rem;
+}
+.img-carrito:hover{
+  transform: scale(1.6 ,1.6);
+}
+
+.navegador ul{
+  display: inline-block; 
+  display: flex;
+  flex-flow: row wrap; 
+  margin-left: 5vw;
+}
+
+.menu-class{
+  padding: 1rem 2rem;
+  font-family: 'Oswald', sans-serif;
+  font-size: 1.3rem;
+}
+
+.menu-class a:link, .menu-class a:visited { 
+  color: white;
+  text-decoration: none; 
+}
+.menu-class a:hover, .menu-class a:active { 
+  color:#ffd7a9; 
+  text-decoration: none;
+}
+
+.borrar{
+  clear: both;
 }

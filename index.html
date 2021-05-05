@@ -10,6 +10,9 @@
 
   <title>Glomus | Decoración y jardín</title>
 
+  <link rel="preconnect" href="https://fonts.gstatic.com">
+  <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@600&display=swap" rel="stylesheet">
+
   <!-- Bootstrap core CSS -->
   <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
   
@@ -23,34 +26,29 @@
 
   <!-- Navigation -->
   <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
-    <div class="container">
-      <a class="navbar-brand" href="#"><img class="img" src="imagenes/logo.png"></a>
+    <div class="nav-container">
+      <a class="navbar-brand" href="#"><img class="img-logo" src="imagenes/logo.png"></a>
       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
-      <div class="collapse navbar-collapse" id="navbarResponsive">
-        <ul class="navbar-nav ml-auto">
-          <li class="nav-item active">
-            <a class="nav-link" href="#">Home
-              <span class="sr-only">(current)</span>
-            </a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="#">Nosotros</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="#">Blog</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="#">Contacto</a>
+      <div id="navegador" class="navegador collapse navbar-collapse" >
+        <ul>
+          <li id="menuNav0" class="menu-class"><a href="#">Nosotros</a></li>
+          <li id="menuNav1" class="menu-class"><a href="#">Catálogo</a></li>
+          <li id="menuNav2" class="menu-class"><a href="#">Blog</a></li>
+          <li id="menuNav3" class="menu-class"><a href="#">Contacto</a></li> 
+        </ul>
+        <div class="borrar"></div>
+      </div>
+      <div class="changuito">
+        <ul>
+          <li>
+            <i id="checkout" role="button" aria-hidden="true"><img class= "img-carrito" src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZlcnNpb249IjEuMSIgeG1sbnM6eGxpbms9Imh0dHA6Ly93d3cudzMub3JnLzE5OTkveGxpbmsiIHhtbG5zOnN2Z2pzPSJodHRwOi8vc3ZnanMuY29tL3N2Z2pzIiB3aWR0aD0iNTEyIiBoZWlnaHQ9IjUxMiIgeD0iMCIgeT0iMCIgdmlld0JveD0iMCAwIDUxMS4zOTMgNTExLjM5MyIgc3R5bGU9ImVuYWJsZS1iYWNrZ3JvdW5kOm5ldyAwIDAgNTEyIDUxMiIgeG1sOnNwYWNlPSJwcmVzZXJ2ZSIgY2xhc3M9IiI+PGc+PHBhdGggeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiBkPSJtNDkwLjM2IDEyOC4wNTdoLTEwNy43ODFjMS43NDctMi4yMDkgMi45NzEtMy42NTMgNS40MjktNi42NjggMjQuMTY3LTI5LjY0NCAyMS45ODEtNzIuNDE2LTUuMDktOTkuNTAxLTMwLjgwOC0zMC43OTItNzcuOTA0LTI3LjY3LTEwNS44OTYuNjM5LTI3LjgzOS0yOC4xNTMtNzQuODg1LTMxLjYzNy0xMDUuOTAzLS42MzMtMjcuMDY1IDI3LjA3OC0yOS4yNSA2OS44NTEtNS4wODQgOTkuNDkzIDIuNzg2IDMuNDA0IDMuOTA3IDQuNzUzIDUuNDEyIDYuNjY5aC04MC44OThsLTUuOTQzLTY2LjIwOGMtLjk3Mi0xMC44MjYtMTAuMDQ1LTE5LjEyMS0yMC45MTYtMTkuMTIxaC00Mi42NjZjLTExLjU5OCAwLTIxIDkuNDAyLTIxIDIxczkuNDAyIDIxIDIxIDIxaDIzLjQ2N2MxLjM1MyAxNS4wNzMgMjQuMTQ5IDI2OS4wOTQgMjQuMjA4IDI2OS42MTggMi41NTEgMjIuMTEgMTMuODUxIDQxLjI2NyAzMC4xOSA1NC4yMS0zMi41NDYgNDEuNTYzLTIuODExIDEwMi44MzkgNTAuMTM1IDEwMi44MzkgNDMuOTY2IDAgNzQuOTI1LTQzLjg1MyA1OS44NjUtODUuMzM0aDExNC45MzZjLTE1LjA1IDQxLjQ1NSAxNS44NzcgODUuMzM0IDU5Ljg2NSA4NS4zMzQgMzUuMTA2IDAgNjMuNjY3LTI4LjU2MSA2My42NjctNjMuNjY3cy0yOC41NjEtNjMuNjY3LTYzLjY2Ny02My42NjdoLTIzNC41MjVjLTE1Ljk1MiAwLTI5Ljg1My05LjYyNC0zNS44NTQtMjMuNjQ2bDMzNS42MS0xOS43MjRjOS4xNjMtLjUzOCAxNi45MTUtNi45NjYgMTkuMTQxLTE1Ljg3bDQyLjY3LTE3MC42N2MzLjMxNy0xMy4yNjItNi43MzUtMjYuMDkzLTIwLjM3Mi0yNi4wOTN6bS0yODkuNTQyLTc2LjQ2NGMyMC41MzYtMjAuNTI3IDU1LjIwNC01LjYyOCA1NS4yMDQgMjIuODU3IDAgMTEuNTk4IDkuNDAyIDIxIDIxIDIxczIxLTkuNDAyIDIxLTIxYzAtMTMuNDU3IDcuNTA4LTI0LjYwMyAyMC4wODQtMjkuODEzIDMxLjA0Ni0xMi44NiA1OC4zOTEgMjQuNDAyIDM3LjM0OSA1MC4yMTMtMTAuMTE4IDEyLjQxNC0uNjQ0LS4wNS03OC43NDQgMTA0LjQ0LTc1LjMxNy0xMDEuNjE3LTY4LjQ4OC05Mi42Ny03OC4xMjMtMTA0LjQ0LTEwLjUwMS0xMi44ODItOS41NC0zMS40ODIgMi4yMy00My4yNTd6bS01MS43OTQgNDE3LjhjLTExLjk0NyAwLTIxLjY2Ny05LjcyLTIxLjY2Ny0yMS42NjdzOS43Mi0yMS42NjcgMjEuNjY3LTIxLjY2NyAyMS42NjcgOS43MiAyMS42NjcgMjEuNjY3LTkuNzIxIDIxLjY2Ny0yMS42NjcgMjEuNjY3em0yMzQuNjY2IDBjLTExLjk0NyAwLTIxLjY2Ny05LjcyLTIxLjY2Ny0yMS42NjdzOS43Mi0yMS42NjcgMjEuNjY3LTIxLjY2NyAyMS42NjcgOS43MiAyMS42NjcgMjEuNjY3LTkuNzIgMjEuNjY3LTIxLjY2NyAyMS42Njd6bTQ3LjM2OS0xNjkuNzI1LTMyMy4zOTkgMTkuMDA1LTEzLjM0LTE0OC42MTdoMTA4LjQ2YzE2Ljg5MyAyMi44MDMgMzIuMjU2IDQzLjU0NyA1Ni45OTIgNzYuOTA4IDguMzgxIDExLjMwMyAyNS4yODcgMTEuMzAyIDMzLjY4OC4wNjcgMjQuNjM1LTMyLjk0OSAzOS4zODUtNTIuNjk2IDU3LjUyOC03Ni45NzZoMTEyLjQ3N3oiIGZpbGw9IiNmZmZmZmYiIGRhdGEtb3JpZ2luYWw9IiMwMDAwMDAiIHN0eWxlPSIiIGNsYXNzPSIiPjwvcGF0aD48L2c+PC9zdmc+" /></i>
+            <b id="cantidad" style="color: white;" >0</b>
           </li>
         </ul>
       </div>
-      <div class="changuito">
-        <i id="checkout" role="button" aria-hidden="true"><img class= "img-carrito" src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZlcnNpb249IjEuMSIgeG1sbnM6eGxpbms9Imh0dHA6Ly93d3cudzMub3JnLzE5OTkveGxpbmsiIHhtbG5zOnN2Z2pzPSJodHRwOi8vc3ZnanMuY29tL3N2Z2pzIiB3aWR0aD0iNTEyIiBoZWlnaHQ9IjUxMiIgeD0iMCIgeT0iMCIgdmlld0JveD0iMCAwIDUxMS4zOTMgNTExLjM5MyIgc3R5bGU9ImVuYWJsZS1iYWNrZ3JvdW5kOm5ldyAwIDAgNTEyIDUxMiIgeG1sOnNwYWNlPSJwcmVzZXJ2ZSIgY2xhc3M9IiI+PGc+PHBhdGggeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiBkPSJtNDkwLjM2IDEyOC4wNTdoLTEwNy43ODFjMS43NDctMi4yMDkgMi45NzEtMy42NTMgNS40MjktNi42NjggMjQuMTY3LTI5LjY0NCAyMS45ODEtNzIuNDE2LTUuMDktOTkuNTAxLTMwLjgwOC0zMC43OTItNzcuOTA0LTI3LjY3LTEwNS44OTYuNjM5LTI3LjgzOS0yOC4xNTMtNzQuODg1LTMxLjYzNy0xMDUuOTAzLS42MzMtMjcuMDY1IDI3LjA3OC0yOS4yNSA2OS44NTEtNS4wODQgOTkuNDkzIDIuNzg2IDMuNDA0IDMuOTA3IDQuNzUzIDUuNDEyIDYuNjY5aC04MC44OThsLTUuOTQzLTY2LjIwOGMtLjk3Mi0xMC44MjYtMTAuMDQ1LTE5LjEyMS0yMC45MTYtMTkuMTIxaC00Mi42NjZjLTExLjU5OCAwLTIxIDkuNDAyLTIxIDIxczkuNDAyIDIxIDIxIDIxaDIzLjQ2N2MxLjM1MyAxNS4wNzMgMjQuMTQ5IDI2OS4wOTQgMjQuMjA4IDI2OS42MTggMi41NTEgMjIuMTEgMTMuODUxIDQxLjI2NyAzMC4xOSA1NC4yMS0zMi41NDYgNDEuNTYzLTIuODExIDEwMi44MzkgNTAuMTM1IDEwMi44MzkgNDMuOTY2IDAgNzQuOTI1LTQzLjg1MyA1OS44NjUtODUuMzM0aDExNC45MzZjLTE1LjA1IDQxLjQ1NSAxNS44NzcgODUuMzM0IDU5Ljg2NSA4NS4zMzQgMzUuMTA2IDAgNjMuNjY3LTI4LjU2MSA2My42NjctNjMuNjY3cy0yOC41NjEtNjMuNjY3LTYzLjY2Ny02My42NjdoLTIzNC41MjVjLTE1Ljk1MiAwLTI5Ljg1My05LjYyNC0zNS44NTQtMjMuNjQ2bDMzNS42MS0xOS43MjRjOS4xNjMtLjUzOCAxNi45MTUtNi45NjYgMTkuMTQxLTE1Ljg3bDQyLjY3LTE3MC42N2MzLjMxNy0xMy4yNjItNi43MzUtMjYuMDkzLTIwLjM3Mi0yNi4wOTN6bS0yODkuNTQyLTc2LjQ2NGMyMC41MzYtMjAuNTI3IDU1LjIwNC01LjYyOCA1NS4yMDQgMjIuODU3IDAgMTEuNTk4IDkuNDAyIDIxIDIxIDIxczIxLTkuNDAyIDIxLTIxYzAtMTMuNDU3IDcuNTA4LTI0LjYwMyAyMC4wODQtMjkuODEzIDMxLjA0Ni0xMi44NiA1OC4zOTEgMjQuNDAyIDM3LjM0OSA1MC4yMTMtMTAuMTE4IDEyLjQxNC0uNjQ0LS4wNS03OC43NDQgMTA0LjQ0LTc1LjMxNy0xMDEuNjE3LTY4LjQ4OC05Mi42Ny03OC4xMjMtMTA0LjQ0LTEwLjUwMS0xMi44ODItOS41NC0zMS40ODIgMi4yMy00My4yNTd6bS01MS43OTQgNDE3LjhjLTExLjk0NyAwLTIxLjY2Ny05LjcyLTIxLjY2Ny0yMS42NjdzOS43Mi0yMS42NjcgMjEuNjY3LTIxLjY2NyAyMS42NjcgOS43MiAyMS42NjcgMjEuNjY3LTkuNzIxIDIxLjY2Ny0yMS42NjcgMjEuNjY3em0yMzQuNjY2IDBjLTExLjk0NyAwLTIxLjY2Ny05LjcyLTIxLjY2Ny0yMS42NjdzOS43Mi0yMS42NjcgMjEuNjY3LTIxLjY2NyAyMS42NjcgOS43MiAyMS42NjcgMjEuNjY3LTkuNzIgMjEuNjY3LTIxLjY2NyAyMS42Njd6bTQ3LjM2OS0xNjkuNzI1LTMyMy4zOTkgMTkuMDA1LTEzLjM0LTE0OC42MTdoMTA4LjQ2YzE2Ljg5MyAyMi44MDMgMzIuMjU2IDQzLjU0NyA1Ni45OTIgNzYuOTA4IDguMzgxIDExLjMwMyAyNS4yODcgMTEuMzAyIDMzLjY4OC4wNjcgMjQuNjM1LTMyLjk0OSAzOS4zODUtNTIuNjk2IDU3LjUyOC03Ni45NzZoMTEyLjQ3N3oiIGZpbGw9IiNmZmZmZmYiIGRhdGEtb3JpZ2luYWw9IiMwMDAwMDAiIHN0eWxlPSIiIGNsYXNzPSIiPjwvcGF0aD48L2c+PC9zdmc+" /></i>
-        <b id="cantidad" style="color: white;" >0</b>
-      </div>
-  </div>
+    </div>
   </nav>
 
   <!-- Page Content -->
@@ -66,9 +64,11 @@
             
           </div>
           <br>
-          <a href="#" class="list-group-item">Iluminación</a>
-          <a href="#" class="list-group-item">Jardín</a>
-          <a href="#" class="list-group-item">Decoración</a>
+          <div class="parrafo">
+            <h4><strong> Somos una tienda virtual de decoración y jardín</strong></h4>
+            <p><strong>Realizamos productos ecoamigables, </strong> ¿qué significa? Fabricamos productos con madera que encontramos a nuestro alrededor, reutilizamos el material alargando su vida útil y generando una economía circular. <br> Además, de concientizar y potenciar la reutilización y la restauración a nuestra comunidad.</p>
+          
+          </div>
           <br>
           <button onclick="costoEnvio()">Calcular mi envío</button>
           <br>
@@ -106,10 +106,19 @@
             <span class="sr-only">Next</span>
           </a>
         </div>
-
-        <div class="row" id="productos">
-
+        <div class="ordenar" style="right: 0px;">
+          <div class="form-group col-md-6">
+            <select id="filter" class="form-datos form-control " placeholder="orden">
+                <option value="0" selected>Ordenar</option>
+                <option value="1"> A-Z</option>
+                <option value="2">Z-A</option>
+                <option value="3">Menor precio</option>
+                <option value="4"> Mayor precio </option>
+            </select>
+          </div>
         </div>
+        <div class="row" id="productos" ></div>
+
         <!-- /.row -->
 
       </div>
@@ -117,9 +126,58 @@
 
     </div>
     <!-- /.row -->
-
   </div>
   <!-- /.container -->
+
+        <!--formulario de compra-->
+        <section id="formularioCompra" class="was-validated">
+          <div class="col-md-4">
+            <label for="validationCustom01" id="nombre" class="form-label">Nombre</label>
+            <input type="text" class="form-control" id="validationCustom01"  required>
+            <div class="invalid-feedback">
+              Ingrese un nombre válido
+            </div>
+          </div>
+          <div class="col-md-4">
+            <label for="validationCustom02" class="form-label">Apellido</label>
+            <input type="text" class="form-control" id="apellido" required>
+            <div class="invalid-feedback">
+              Ingrese un apellido válido
+            </div>
+          </div>
+          <div class="col-md-4">
+            <label for="validationCustom03" class="form-label">Dirección</label>
+            <input type="text" class="form-control" id="direccion" required>
+            <div class="invalid-feedback">
+              Ingrese una dirección válida
+            </div>
+          </div>
+          <div class="col-md-6">
+            <label for="exampleInputEmail1" class="form-label">Teléfono</label>
+            <input type="number" class="form-control" id="telefono" aria-describedby="numberHelp">
+            <div id="numberHelp" class="form-text">Ingrese el código de área sin el 0 y el celular sin el 15.</div>
+            <div class="invalid-feedback">
+              Ingrese un teléfono válido
+            </div>
+          </div>
+          <div class="col-md-6">
+          <label for="exampleInputEmail1" class="form-label">Email</label>
+          <input type="email" class="form-control" id="email" aria-describedby="emailHelp">
+          <div id="emailHelp" class="form-text">* Nunca compartiremos su correo electrónico con nadie más.</div>
+          <div class="invalid-feedback">
+            Ingrese un email válido
+          </div>
+        </div>
+          <div class="col-12">
+            <button id="" class="btn btn-primary" type="submit">Volver</button>
+          </div>
+          <div class="col-12">
+            <button onclick="enviarDatos()" id="botonEnviar" class="btn btn-primary" type="submit">Enviar datos</button>
+          </div>
+        </section>
+
+
+
 
 
   
@@ -139,8 +197,6 @@
   <!-- Bootstrap core JavaScript -->
   <script src="vendor/jquery/jquery.min.js"></script>
   <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
-
-
 
 </body>
 

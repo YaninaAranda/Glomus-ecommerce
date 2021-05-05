@@ -1,0 +1,74 @@
+[
+    {
+        "id": 0,
+        "imagen": "/imagenes/modeloLenga.jpg", 
+        "nombre": "Modelo LENGA", 
+        "detalle": "Velador cubo nórdico, incluye lámpara vintage", 
+        "precio": 1500, 
+        "stock": 4
+    },
+    {
+        "id": 1,
+        "imagen": "/imagenes/modeloAcacia.jpg", 
+        "nombre": "Modelo ACACIA", 
+        "detalle": "Maceta cubo nórdica", 
+        "precio": 400, 
+        "stock": 2
+    },
+    {
+        "id": 2,
+        "imagen": "/imagenes/modeloCalden.jpg", 
+        "nombre": "Modelo CALDÉN", 
+        "detalle": "Maceta cuadrada, ideal para suculentas o aromáticas", 
+        "precio": 400 , 
+        "stock": 1
+    },
+    {
+        "id": 3,
+        "imagen": "/imagenes/modeloMaiten.jpg", 
+        "nombre": "Modelo MAITÉN", 
+        "detalle": "Maceta rectangular, ideal para suculentas o aromáticas", 
+        "precio": 600, 
+        "stock": 1
+    },
+    {
+        "id": 4,
+        "imagen": "/imagenes/modeloCipres.jpg", 
+        "nombre": "Modelo CIPRÉS", 
+        "detalle": "Perchero rústico con ganchos metálicos", 
+        "precio": 500, 
+        "stock": 1
+    },
+    {
+        "id": 5,
+        "imagen": "/imagenes/modeloAlamo.jpg", 
+        "nombre": "Modelo ÁLAMO", 
+        "detalle": "Portamaceta nórdico, incluye maceta de plástico nº18", 
+        "precio": 1500, 
+        "stock": 1
+    },
+    {
+        "id": 6,
+        "imagen": "/imagenes/modeloAmbay.jpg", 
+        "nombre": "Modelo AMBAY", 
+        "detalle": "Minimaceta doble", 
+        "precio": 400, 
+        "stock": 1
+    },
+    {
+        "id": 7,
+        "imagen": "/imagenes/modeloNogal.jpg", 
+        "nombre": "Modelo NOGAL", 
+        "detalle": "Organizador multipróposito", 
+        "precio": 1500, 
+        "stock": 1
+    },
+    {
+        "id": 8,
+        "imagen": "/imagenes/modeloOmbu.jpg", 
+        "nombre": "Modelo OMBÚ", 
+        "detalle": "Soporte para auriculares", 
+        "precio": 600, 
+        "stock": 1
+    }
+]
