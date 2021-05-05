@@ -1,5 +1,3 @@
-let valorDelCarritoEnStorage = localStorage.getItem('catalogo');
-
 //* Bienvenida
 let usuario = prompt(`Ingresa tu nombre`);
 let sexo = prompt(`Indique su sexo. "F" para femenino, "M" para masculino", "X" para otros`);
@@ -9,9 +7,9 @@ let catalogo = [];
 
 let bienvenida = document.getElementById('bienvenida')
 
-bienvenida.innerText = `¡Bienvenido ${usuario}! ${identidad}`;
-
-
+bienvenida.innerText = `¡Hola ${usuario}! ${identidad}`;
+localStorage.setItem('bienvenida', usuario);
+localStorage.setItem('bienvenida', identidad);
 
 function validarIdentidad(){
     let auxiliar;
@@ -87,13 +85,17 @@ let acumulador = ``;
 printCatalogo(catalogo);
 
 //* Condicional para precargar datos en Storage *//
-/*if(valorDelCarritoEnStorage == null){
-    catalogo = [];
+let carrito = [];
+let valorDelCarritoEnStorage = JSON.parse(localStorage.getItem('carrito'));
+
+if(valorDelCarritoEnStorage == null){
+
+    carrito = carritoEnLocalStorage
 }else{
-    catalogo = JSON.parse(valorDelCarritoEnStorage);
+    localStorage.setItem('carrito', JSON.stringify(carrito))
 }
-console.log(JSON.parse(valorDelCarritoEnStorage))
-*/
+console.log(carrito)
+
 
 //* Función agregar al carrito *//
 function agregarAlCarrito(precio, stock){
@@ -109,6 +111,8 @@ function agregarAlCarrito(precio, stock){
     else{
     console.log(`No hay stock`);
     }
+    console.log(carrito)
+    localStorage.setItem('carrito', JSON.stringify(carrito))
 }
 function validarStock(stock){
     return stock > 0;
@@ -157,7 +161,6 @@ ordenamiento.addEventListener("click",function(e){
             ordenMas();
         break;   
     }
-
 })
 
 function ordenA() {
@@ -215,7 +218,6 @@ function ordenMas() {
     });
     return printCatalogo(catalogo);  
 }
-
 
 function removerAcentos(string){
     return string.normalize("NFD").replace(/[\u0300-\u036f]/g, "");
