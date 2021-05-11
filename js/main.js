@@ -1,30 +1,52 @@
-//* Bienvenida
-let usuario = prompt(`Ingresa tu nombre`);
-let sexo = prompt(`Indique su sexo. "F" para femenino, "M" para masculino", "X" para otros`);
-let identidad = validarIdentidad();
+$('nav.nav-class').css({'background-color':'#143642', 'height': '100px'})
+$('button').css({'padding': '0.5vw', 'background-color':'#143642', 'color': 'white', 'border-radius': '1px'})
+
+//* Función para el Ingreso - Modal *//
+let registroAbrir = document.getElementById('botonRegistro');
+let registroCerrar = document.getElementById('aceptar');
+
+
+let contenedorModal = document.getElementsByClassName('modal-contenedor')[0]
+let modalDatos = document.getElementsByClassName('modal-datos')[0]
+
+
+registroAbrir.addEventListener('click', ()=> {
+    contenedorModal.classList.toggle('modal-active')
+})
+registroCerrar.addEventListener('click', ()=> {
+    contenedorModal.classList.toggle('modal-active')
+})
+modalDatos.addEventListener('click',(e)=> {
+    e.stopPropagation()
+})
+contenedorModal.addEventListener('click', ()=> {
+    registroCerrar.click()
+})
+
+//* MOSTRAR IDENTIDAD EN NAVEGADOR *//
+let btn = document.getElementById("aceptar");
+    
+    btn.addEventListener('click', () => {
+        let usuario = document.getElementById("nombre").value;
+        let sexo = document.getElementById("sexo").value;
+        let acumuladorHola = ``;
+        let auxiliar;
+        if ((sexo) == `f` || (sexo) == `F` ){
+            auxiliar = 'Bienvenida a Glomus';
+        } else if ((sexo) == `m` || (sexo) == `M`){
+            auxiliar = 'Bienvenido a Glomus';
+        } else if ((sexo) == `x` || (sexo) == `X`){
+            auxiliar ='Bienvenidx a Glomus';
+        } else {
+            auxiliar =`Ingrese identidad válida`;
+        }
+        acumuladorHola += `<h5 class="ingresar"> Hola ${usuario}! ${auxiliar}</h5>`;
+        
+        $('.ingresar').replaceWith(acumuladorHola);
+    })  
+
 let totalCarrito = 0;
 let catalogo = [];
-
-let bienvenida = document.getElementById('bienvenida')
-
-bienvenida.innerText = `¡Hola ${usuario}! ${identidad}`;
-localStorage.setItem('bienvenida', usuario);
-localStorage.setItem('bienvenida', identidad);
-
-function validarIdentidad(){
-    let auxiliar;
-    if ((sexo) == `f` || (sexo) == `F` ){
-        auxiliar = 'Bienvenida a Glomus';
-    } else if ((sexo) == `m` || (sexo) == `M`){
-        auxiliar = 'Bienvenido a Glomus';
-    } else if ((sexo) == `x` || (sexo) == `X`){
-        auxiliar ='Bienvenidx a Glomus';
-    } else {
-        auxiliar =`Ingrese identidad válida`;
-    }
-    return auxiliar;
-}
-validarIdentidad() 
 
 //*Constructor para productos *//
 class modelo{
@@ -75,14 +97,15 @@ let acumulador = ``;
         </div>
         <div class="card-footer">
         <button onclick='agregarAlCarrito(${elementCatalogo.precio}, ${elementCatalogo.stock})'>Agregar</button>
-        <small class="text-muted">&#9733; &#9733; &#9733; &#9733; &#9734;</small>
         </div>
         </div>
     </div> `;  
     })
-    return document.getElementById("productos").innerHTML = acumulador;
+    return $('#productos').html(acumulador);
+    
 }
 printCatalogo(catalogo);
+$('button').css({'backgroundColor':'#143642', 'color': 'white', 'padding':'0.2em 1em'})
 
 //* Condicional para precargar datos en Storage *//
 let carrito = [];
@@ -106,7 +129,6 @@ function agregarAlCarrito(precio, stock){
     localStorage.getItem('catalogo', catalogo);
     localStorage.catalogo = JSON.stringify(catalogo)
     console.log(`Se agrego un nuevo producto al carrito. El total es: $${totalCarrito}`);
-    alert(`El producto fue agregado exitosamente`);
     }
     else{
     console.log(`No hay stock`);
@@ -122,7 +144,7 @@ function validarStock(stock){
 
 
 function costoEnvio(){
-    let elegirZona = prompt(`Ingrese su ubicación: Zona Oeste (ZO), Zona Este (ZE), Zona Norte (ZN), Zona Sur (ZS), CABA`);
+    let elegirZona = document.getElementById("ubicación").value
     let aux;
     if ((elegirZona) == `zo` || (elegirZona) == `ZO` ){
         aux = `El costo de envío es $ ` + 400;
@@ -137,9 +159,11 @@ function costoEnvio(){
     } else {
         aux =`No hacemos envíos en esa zona`;
     }
-    document.getElementById("envio").innerHTML = aux;
+    $('#envio').html(aux)
+    
 }
 
+//*función para ordenar productos *//
 
 let ordenamiento = document.getElementById("filter");
 
@@ -225,22 +249,9 @@ function removerAcentos(string){
 
 
 //* uso de DOM para desafío 8 *//
-/* agrego párrafo */
-const parrafo = document.createElement('p');
 
-/* agrego texto */
-parrafo.textContent = `¡Sé parte del cambio!`;
+$('em:last').append(`<br>¡Sé parte del cambio!`).css({'color':'#143642', 'fontWeight': 'bolder' })
 
-/* Agrego clases */
-parrafo.classList.add('change_color', 'formatos_btn', 'center', 'small');
-
-const divParrafo = document.querySelector('.parrafo');
-divParrafo.appendChild(parrafo);
-
-//* CARRITO AGREGADO *//
-function carritoAgregado (){
-    alert 
-}
 
 //* FORMULARIO DE COMPRA - desafio 9 *//
 let nombre = "";
@@ -274,7 +285,6 @@ function enviarDatos(event){
     console.log('se envio formulario');
     console.log(event);
     console.log(event.target.value);
-    alert(`Muchas gracias por su compra, en breve le estaremos enviando sus productos.`)
 } 
 
 
@@ -310,9 +320,9 @@ window.onload = function() {
         submenu[i].style.width="100%";
         submenu[i].style.left="10px";
         submenu[i].style.backgroundColor="#343a4080";
-        submenu[i].style.font="normal 0.8em Oswald";
+        submenu[i].style.font="0.8em Merriweather, serif";
         submenu[i].style.color="white"
-        submenu[i].style.padding="0.2em 1em";
+        submenu[i].style.padding="1rem 1rem 0.5rem";
         submenu[i].style.display="none";	
     }
 
@@ -334,9 +344,28 @@ window.onload = function() {
             }
 
 
+/*             function filtrarPorRemeras(categoriaAFiltrar) {
+                let productosFiltrados = productos.filter((element) => {
+                  return element.category == "Remeras";
+                });
+                let acumulador = ``;
+                productosFiltrados.forEach((element) => {
+                  acumulador += `<h1>${element.name}</h1>`;
+                });
+                $("#root").html(acumulador);
+              }
+              function filtrarPorZapas() {
+                let productosFiltrados = productos.filter(
+                  (element) => element.category == "Zapas"
+                );
+                let acumulador = ``;
+                productosFiltrados.forEach((element) => {
+                  acumulador += `<h1>${element.name}</h1>`;
+                });
+                $("#root").html(acumulador);
+              }
 
-
-
+*/
 
 
   // Mostrar card :)
