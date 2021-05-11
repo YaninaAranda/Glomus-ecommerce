@@ -12,61 +12,72 @@ ul{
   list-style: none;
 }
 
-
-
 .listas{
   margin-top: 5vw;
 }
 
+h3{
+  color: white;
+}
 .nav-container { 
   display: grid;
-  grid-template-columns: 0.5fr 2fr 0.5fr;
-  grid-template-rows: 0.5fr;
+  grid-template-columns: 0.5fr 2fr 0.2fr;
+  grid-template-rows: 0.2fr 0.1fr;
   grid-template-areas:
-  "img navegador changuito";
-  padding-top: 1rem;
-  justify-content: center;
-  margin: 0vw 10vw;
+  "img ingresar changuito"
+  "img navegador navegador";
+  padding-top: 2rem;
+  margin: 0vw 5vw;
 }
 
-.navegador{
-  grid-area: navegador;
-  justify-self: flex-end;
+.ingresar{
+  grid-area: ingresar;
+  margin-right: 2vw ;
+  align-self: center;
+  justify-self:self-end;
+  border: none;
+  color: white;
 }
 
 .img-logo{
   grid-area: img;
-  width: 100%;
+  width: 90%;
 }
 
 .changuito{
   grid-area: changuito;
-  align-self: flex-end;
-  padding: 1rem;
+  align-self: center;
+  justify-self:self-end;
 }
+
 .img-carrito{
-  width: 25%;
+  width: 40%;
   padding-right: 0.4rem;
 }
 .img-carrito:hover{
   transform: scale(1.6 ,1.6);
 }
 
+.navegador{
+  grid-area: navegador;
+  margin-left: 21vw;
+  padding-bottom: 1vw;
+}
+
 .navegador ul{
-  display: inline-block; 
   display: flex;
   flex-flow: row wrap; 
-  margin-left: 5vw;
+  margin-left: 9vw;
 }
 
 .menu-class{
-  padding: 1rem 2rem;
-  font-family: 'Oswald', sans-serif;
-  font-size: 1.3rem;
+  padding: 0rem 2rem;
+  font-family: 'Merriweather', serif;
+  font-size: 0.8rem;
 }
 
-.menu-class a:link, .menu-class a:visited { 
-  color: white;
+.menu-class a:link, .menu-class a:visited{ 
+  color: rgba(255, 255, 255, 0.748);
   text-decoration: none; 
 }
 .menu-class a:hover, .menu-class a:active { 
@@ -77,3 +88,67 @@ ul{
 .borrar{
   clear: both;
 }
+
+#botonRegistro:hover {
+  cursor: pointer;
+  color: white;
+}
+#botonRegistro:focus {
+  outline: none;
+}
+
+.modal-contenedor {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transition: all .5s;
+  opacity: 0;
+  visibility: hidden;
+  z-index: 2000;
+}
+
+.modal-active {
+  opacity: 1;
+  visibility: visible;
+}
+
+.modal-datos {
+  position: relative;
+  background-color: #143642ce;
+  width: 300px;
+  height: 300px;
+  display: flex;
+  flex-flow: column wrap;
+  padding: 25px;
+  margin-top: -100%;
+  transition: all .5s;
+  color: white;
+}
+
+.modal-active .modal-datos {
+  margin-top: 0;
+}
+
+.modal-datos #aceptar {
+  position: absolute;
+  bottom: 15px;
+  right: 20px;
+  border: none;
+
+}
+.modal-datos #aceptar:hover {
+  cursor: pointer;
+}
+.modal-datos #aceptar:focus {
+  outline: none;
+}
+
+.cuadroEnvio{
+  padding: 1vw;
+  border: #143642ce 2px solid;
+}
+

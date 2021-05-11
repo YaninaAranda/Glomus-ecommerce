@@ -11,7 +11,7 @@
   <title>Glomus | Decoración y jardín</title>
 
   <link rel="preconnect" href="https://fonts.gstatic.com">
-  <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@600&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Merriweather&display=swap" rel="stylesheet">
 
   <!-- Bootstrap core CSS -->
   <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
@@ -24,13 +24,22 @@
 
 <body>
 
-  <!-- Navigation -->
-  <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
+  <!-- Navegador -->
+  <nav class="nav-class navbar navbar-expand-lg navbar-dark fixed-top">
     <div class="nav-container">
       <a class="navbar-brand" href="#"><img class="img-logo" src="imagenes/logo.png"></a>
-      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+
+      <button class="boton-ingreso navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
+      
+      <button id="botonRegistro" class="ingresar boton-ingreso"><h5>Registrate</h5></button>
+      
+      <div class="changuito">
+        <i id="checkout" role="button" aria-hidden="true"><img class="img-carrito" src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZlcnNpb249IjEuMSIgeG1sbnM6eGxpbms9Imh0dHA6Ly93d3cudzMub3JnLzE5OTkveGxpbmsiIHhtbG5zOnN2Z2pzPSJodHRwOi8vc3ZnanMuY29tL3N2Z2pzIiB3aWR0aD0iNTEyIiBoZWlnaHQ9IjUxMiIgeD0iMCIgeT0iMCIgdmlld0JveD0iMCAwIDUxMS4zOTMgNTExLjM5MyIgc3R5bGU9ImVuYWJsZS1iYWNrZ3JvdW5kOm5ldyAwIDAgNTEyIDUxMiIgeG1sOnNwYWNlPSJwcmVzZXJ2ZSIgY2xhc3M9IiI+PGc+PHBhdGggeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiBkPSJtNDkwLjM2IDEyOC4wNTdoLTEwNy43ODFjMS43NDctMi4yMDkgMi45NzEtMy42NTMgNS40MjktNi42NjggMjQuMTY3LTI5LjY0NCAyMS45ODEtNzIuNDE2LTUuMDktOTkuNTAxLTMwLjgwOC0zMC43OTItNzcuOTA0LTI3LjY3LTEwNS44OTYuNjM5LTI3LjgzOS0yOC4xNTMtNzQuODg1LTMxLjYzNy0xMDUuOTAzLS42MzMtMjcuMDY1IDI3LjA3OC0yOS4yNSA2OS44NTEtNS4wODQgOTkuNDkzIDIuNzg2IDMuNDA0IDMuOTA3IDQuNzUzIDUuNDEyIDYuNjY5aC04MC44OThsLTUuOTQzLTY2LjIwOGMtLjk3Mi0xMC44MjYtMTAuMDQ1LTE5LjEyMS0yMC45MTYtMTkuMTIxaC00Mi42NjZjLTExLjU5OCAwLTIxIDkuNDAyLTIxIDIxczkuNDAyIDIxIDIxIDIxaDIzLjQ2N2MxLjM1MyAxNS4wNzMgMjQuMTQ5IDI2OS4wOTQgMjQuMjA4IDI2OS42MTggMi41NTEgMjIuMTEgMTMuODUxIDQxLjI2NyAzMC4xOSA1NC4yMS0zMi41NDYgNDEuNTYzLTIuODExIDEwMi44MzkgNTAuMTM1IDEwMi44MzkgNDMuOTY2IDAgNzQuOTI1LTQzLjg1MyA1OS44NjUtODUuMzM0aDExNC45MzZjLTE1LjA1IDQxLjQ1NSAxNS44NzcgODUuMzM0IDU5Ljg2NSA4NS4zMzQgMzUuMTA2IDAgNjMuNjY3LTI4LjU2MSA2My42NjctNjMuNjY3cy0yOC41NjEtNjMuNjY3LTYzLjY2Ny02My42NjdoLTIzNC41MjVjLTE1Ljk1MiAwLTI5Ljg1My05LjYyNC0zNS44NTQtMjMuNjQ2bDMzNS42MS0xOS43MjRjOS4xNjMtLjUzOCAxNi45MTUtNi45NjYgMTkuMTQxLTE1Ljg3bDQyLjY3LTE3MC42N2MzLjMxNy0xMy4yNjItNi43MzUtMjYuMDkzLTIwLjM3Mi0yNi4wOTN6bS0yODkuNTQyLTc2LjQ2NGMyMC41MzYtMjAuNTI3IDU1LjIwNC01LjYyOCA1NS4yMDQgMjIuODU3IDAgMTEuNTk4IDkuNDAyIDIxIDIxIDIxczIxLTkuNDAyIDIxLTIxYzAtMTMuNDU3IDcuNTA4LTI0LjYwMyAyMC4wODQtMjkuODEzIDMxLjA0Ni0xMi44NiA1OC4zOTEgMjQuNDAyIDM3LjM0OSA1MC4yMTMtMTAuMTE4IDEyLjQxNC0uNjQ0LS4wNS03OC43NDQgMTA0LjQ0LTc1LjMxNy0xMDEuNjE3LTY4LjQ4OC05Mi42Ny03OC4xMjMtMTA0LjQ0LTEwLjUwMS0xMi44ODItOS41NC0zMS40ODIgMi4yMy00My4yNTd6bS01MS43OTQgNDE3LjhjLTExLjk0NyAwLTIxLjY2Ny05LjcyLTIxLjY2Ny0yMS42NjdzOS43Mi0yMS42NjcgMjEuNjY3LTIxLjY2NyAyMS42NjcgOS43MiAyMS42NjcgMjEuNjY3LTkuNzIxIDIxLjY2Ny0yMS42NjcgMjEuNjY3em0yMzQuNjY2IDBjLTExLjk0NyAwLTIxLjY2Ny05LjcyLTIxLjY2Ny0yMS42NjdzOS43Mi0yMS42NjcgMjEuNjY3LTIxLjY2NyAyMS42NjcgOS43MiAyMS42NjcgMjEuNjY3LTkuNzIgMjEuNjY3LTIxLjY2NyAyMS42Njd6bTQ3LjM2OS0xNjkuNzI1LTMyMy4zOTkgMTkuMDA1LTEzLjM0LTE0OC42MTdoMTA4LjQ2YzE2Ljg5MyAyMi44MDMgMzIuMjU2IDQzLjU0NyA1Ni45OTIgNzYuOTA4IDguMzgxIDExLjMwMyAyNS4yODcgMTEuMzAyIDMzLjY4OC4wNjcgMjQuNjM1LTMyLjk0OSAzOS4zODUtNTIuNjk2IDU3LjUyOC03Ni45NzZoMTEyLjQ3N3oiIGZpbGw9IiNmZmZmZmYiIGRhdGEtb3JpZ2luYWw9IiMwMDAwMDAiIHN0eWxlPSIiIGNsYXNzPSIiPjwvcGF0aD48L2c+PC9zdmc+"></i>
+        <b id="cantidad" style="color: white;">0</b>
+      </div>
+      
       <div id="navegador" class="navegador collapse navbar-collapse" >
         <ul>
           <li id="menuNav0" class="menu-class"><a href="#">Nosotros</a></li>
@@ -40,16 +49,21 @@
         </ul>
         <div class="borrar"></div>
       </div>
-      <div class="changuito">
-        <ul>
-          <li>
-            <i id="checkout" role="button" aria-hidden="true"><img class= "img-carrito" src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZlcnNpb249IjEuMSIgeG1sbnM6eGxpbms9Imh0dHA6Ly93d3cudzMub3JnLzE5OTkveGxpbmsiIHhtbG5zOnN2Z2pzPSJodHRwOi8vc3ZnanMuY29tL3N2Z2pzIiB3aWR0aD0iNTEyIiBoZWlnaHQ9IjUxMiIgeD0iMCIgeT0iMCIgdmlld0JveD0iMCAwIDUxMS4zOTMgNTExLjM5MyIgc3R5bGU9ImVuYWJsZS1iYWNrZ3JvdW5kOm5ldyAwIDAgNTEyIDUxMiIgeG1sOnNwYWNlPSJwcmVzZXJ2ZSIgY2xhc3M9IiI+PGc+PHBhdGggeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiBkPSJtNDkwLjM2IDEyOC4wNTdoLTEwNy43ODFjMS43NDctMi4yMDkgMi45NzEtMy42NTMgNS40MjktNi42NjggMjQuMTY3LTI5LjY0NCAyMS45ODEtNzIuNDE2LTUuMDktOTkuNTAxLTMwLjgwOC0zMC43OTItNzcuOTA0LTI3LjY3LTEwNS44OTYuNjM5LTI3LjgzOS0yOC4xNTMtNzQuODg1LTMxLjYzNy0xMDUuOTAzLS42MzMtMjcuMDY1IDI3LjA3OC0yOS4yNSA2OS44NTEtNS4wODQgOTkuNDkzIDIuNzg2IDMuNDA0IDMuOTA3IDQuNzUzIDUuNDEyIDYuNjY5aC04MC44OThsLTUuOTQzLTY2LjIwOGMtLjk3Mi0xMC44MjYtMTAuMDQ1LTE5LjEyMS0yMC45MTYtMTkuMTIxaC00Mi42NjZjLTExLjU5OCAwLTIxIDkuNDAyLTIxIDIxczkuNDAyIDIxIDIxIDIxaDIzLjQ2N2MxLjM1MyAxNS4wNzMgMjQuMTQ5IDI2OS4wOTQgMjQuMjA4IDI2OS42MTggMi41NTEgMjIuMTEgMTMuODUxIDQxLjI2NyAzMC4xOSA1NC4yMS0zMi41NDYgNDEuNTYzLTIuODExIDEwMi44MzkgNTAuMTM1IDEwMi44MzkgNDMuOTY2IDAgNzQuOTI1LTQzLjg1MyA1OS44NjUtODUuMzM0aDExNC45MzZjLTE1LjA1IDQxLjQ1NSAxNS44NzcgODUuMzM0IDU5Ljg2NSA4NS4zMzQgMzUuMTA2IDAgNjMuNjY3LTI4LjU2MSA2My42NjctNjMuNjY3cy0yOC41NjEtNjMuNjY3LTYzLjY2Ny02My42NjdoLTIzNC41MjVjLTE1Ljk1MiAwLTI5Ljg1My05LjYyNC0zNS44NTQtMjMuNjQ2bDMzNS42MS0xOS43MjRjOS4xNjMtLjUzOCAxNi45MTUtNi45NjYgMTkuMTQxLTE1Ljg3bDQyLjY3LTE3MC42N2MzLjMxNy0xMy4yNjItNi43MzUtMjYuMDkzLTIwLjM3Mi0yNi4wOTN6bS0yODkuNTQyLTc2LjQ2NGMyMC41MzYtMjAuNTI3IDU1LjIwNC01LjYyOCA1NS4yMDQgMjIuODU3IDAgMTEuNTk4IDkuNDAyIDIxIDIxIDIxczIxLTkuNDAyIDIxLTIxYzAtMTMuNDU3IDcuNTA4LTI0LjYwMyAyMC4wODQtMjkuODEzIDMxLjA0Ni0xMi44NiA1OC4zOTEgMjQuNDAyIDM3LjM0OSA1MC4yMTMtMTAuMTE4IDEyLjQxNC0uNjQ0LS4wNS03OC43NDQgMTA0LjQ0LTc1LjMxNy0xMDEuNjE3LTY4LjQ4OC05Mi42Ny03OC4xMjMtMTA0LjQ0LTEwLjUwMS0xMi44ODItOS41NC0zMS40ODIgMi4yMy00My4yNTd6bS01MS43OTQgNDE3LjhjLTExLjk0NyAwLTIxLjY2Ny05LjcyLTIxLjY2Ny0yMS42NjdzOS43Mi0yMS42NjcgMjEuNjY3LTIxLjY2NyAyMS42NjcgOS43MiAyMS42NjcgMjEuNjY3LTkuNzIxIDIxLjY2Ny0yMS42NjcgMjEuNjY3em0yMzQuNjY2IDBjLTExLjk0NyAwLTIxLjY2Ny05LjcyLTIxLjY2Ny0yMS42NjdzOS43Mi0yMS42NjcgMjEuNjY3LTIxLjY2NyAyMS42NjcgOS43MiAyMS42NjcgMjEuNjY3LTkuNzIgMjEuNjY3LTIxLjY2NyAyMS42Njd6bTQ3LjM2OS0xNjkuNzI1LTMyMy4zOTkgMTkuMDA1LTEzLjM0LTE0OC42MTdoMTA4LjQ2YzE2Ljg5MyAyMi44MDMgMzIuMjU2IDQzLjU0NyA1Ni45OTIgNzYuOTA4IDguMzgxIDExLjMwMyAyNS4yODcgMTEuMzAyIDMzLjY4OC4wNjcgMjQuNjM1LTMyLjk0OSAzOS4zODUtNTIuNjk2IDU3LjUyOC03Ni45NzZoMTEyLjQ3N3oiIGZpbGw9IiNmZmZmZmYiIGRhdGEtb3JpZ2luYWw9IiMwMDAwMDAiIHN0eWxlPSIiIGNsYXNzPSIiPjwvcGF0aD48L2c+PC9zdmc+" /></i>
-            <b id="cantidad" style="color: white;" >0</b>
-          </li>
-        </ul>
-      </div>
     </div>
+
   </nav>
+
+  <div class="modal-contenedor">
+    <div class="modal-datos">
+      <h3>Ingresa tus datos</h3>
+      <p>Queremos conocerte</p>
+      <label for="validationCustom01" class="form-label">Nombre</label>
+        <input type="text"  id="nombre">
+        <label for="validationCustom01" class="form-label">Indique sexo: (F,M,X)</label>
+        <input type="text"  id="sexo">
+      <button id="aceptar">aceptar</button>
+    </div>
+  </div>
 
   <!-- Page Content -->
   <div class="container">
@@ -59,21 +73,21 @@
       <div class="col-lg-3">
 
         <div class="listas list-group">
-          <div>
-            <h3 id="bienvenida"></h3>
-            
-          </div>
+          
           <br>
           <div class="parrafo">
             <h4><strong> Somos una tienda virtual de decoración y jardín</strong></h4>
-            <p><strong>Realizamos productos ecoamigables, </strong> ¿qué significa? Fabricamos productos con madera que encontramos a nuestro alrededor, reutilizamos el material alargando su vida útil y generando una economía circular. <br> Además, de concientizar y potenciar la reutilización y la restauración a nuestra comunidad.</p>
+            <p><strong>Realizamos productos ecoamigables, </strong> ¿qué significa? Fabricamos productos con madera que encontramos a nuestro alrededor, reutilizamos el material alargando su vida útil y generando una economía circular. <br> Además, de concientizar y potenciar la reutilización y la restauración a nuestra comunidad.<em></em></p>
           
           </div>
           <br>
-          <button onclick="costoEnvio()">Calcular mi envío</button>
-          <br>
-          <p id="envio"></p>
-          
+          <div class="cuadroEnvio">
+            <label for="validationCustom01" class="form-label">Ingrese su ubicación: Zona Oeste (ZO), Zona Este (ZE), Zona Norte (ZN), Zona Sur (ZS), CABA`)</label>
+            <input type="text"  id="ubicación">
+            <button onclick="costoEnvio()">Calcular mi envío</button>
+            <br>
+            <p id="envio"></p>
+        </div>
         </div>
       </div>
       <!-- /.col-lg-3 -->
@@ -191,6 +205,9 @@
     <!-- /.container -->
   </footer>
 
+    <!-- jquery descargado -->
+    <script src="js/jquery-3.6.0.min.js"></script>
+
   <!-- js nuevo -->
   <script src="js/main.js"></script>
 
@@ -198,8 +215,7 @@
   <script src="vendor/jquery/jquery.min.js"></script>
   <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
 
-  <!-- jquery descargado -->
-  <script src="js/jquery-3.6.0.min.js"></script>
+
 
 
 </body>
