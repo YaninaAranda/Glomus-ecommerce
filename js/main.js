@@ -43,6 +43,7 @@ let btn = document.getElementById("aceptar");
         acumuladorHola += `<h5 class="ingresar"> Hola ${usuario}! ${auxiliar}</h5>`;
         
         $('.ingresar').replaceWith(acumuladorHola);
+    
     })  
 
 let totalCarrito = 0;
@@ -60,15 +61,15 @@ class modelo{
     }
 }
 
-let lenga = new modelo(0, '/imagenes/modeloLenga.jpg','Modelo LENGA', 'Velador cubo nórdico, incluye lámpara vintage', 1500, 4);
-let acacia = new modelo(1, '/imagenes/modeloAcacia.jpg','Modelo ACACIA', 'Maceta cubo nórdica', 400, 2);
-let calden = new modelo(2, '/imagenes/modeloCalden.jpg','Modelo CALDÉN', 'Maceta cuadrada, ideal para suculentas o aromáticas', 400, 1);
-let maiten = new modelo(3, '/imagenes/modeloMaiten.jpg','Modelo MAITÉN', 'Maceta rectangular, ideal para suculentas o aromáticas', 600, 1);
-let cipres = new modelo(4, '/imagenes/modeloCipres.jpg','Modelo CIPRÉS', 'Perchero rústico con ganchos metálicos', 500, 1);
-let alamo = new modelo(5, '/imagenes/modeloAlamo.jpg','Modelo ÁLAMO', 'Portamaceta nórdico, incluye maceta de plástico nº18', 1500, 1);
-let ambay = new modelo(6, '/imagenes/modeloAmbay.jpg','Modelo AMBAY', 'Minimaceta doble', 400, 1);
-let nogal = new modelo(7, '/imagenes/modeloNogal.jpg','Modelo NOGAL', 'Organizador multipróposito', 1500, 1);
-let ombu = new modelo(8, '/imagenes/modeloOmbu.jpg','Modelo OMBÚ', 'Soporte para auriculares', 600, 1);
+let lenga = new modelo(1, '/imagenes/modeloLenga.jpg','Modelo LENGA', 'Velador cubo nórdico, incluye lámpara vintage', 1500, 4);
+let acacia = new modelo(2, '/imagenes/modeloAcacia.jpg','Modelo ACACIA', 'Maceta cubo nórdica', 400, 2);
+let calden = new modelo(3, '/imagenes/modeloCalden.jpg','Modelo CALDÉN', 'Maceta cuadrada, ideal para suculentas o aromáticas', 400, 1);
+let maiten = new modelo(4, '/imagenes/modeloMaiten.jpg','Modelo MAITÉN', 'Maceta rectangular, ideal para suculentas o aromáticas', 600, 1);
+let cipres = new modelo(5, '/imagenes/modeloCipres.jpg','Modelo CIPRÉS', 'Perchero rústico con ganchos metálicos', 500, 1);
+let alamo = new modelo(6, '/imagenes/modeloAlamo.jpg','Modelo ÁLAMO', 'Portamaceta nórdico, incluye maceta de plástico nº18', 1500, 1);
+let ambay = new modelo(7, '/imagenes/modeloAmbay.jpg','Modelo AMBAY', 'Minimaceta doble', 400, 1);
+let nogal = new modelo(8, '/imagenes/modeloNogal.jpg','Modelo NOGAL', 'Organizador multipróposito', 1500, 1);
+let ombu = new modelo(9, '/imagenes/modeloOmbu.jpg','Modelo OMBÚ', 'Soporte para auriculares', 600, 1);
 catalogo.push(lenga);
 catalogo.push(acacia);
 catalogo.push(calden);
@@ -81,25 +82,26 @@ catalogo.push(ombu);
 
 //* Card de productos *//
 function printCatalogo(catalogo){
-let acumulador = ``;
+    let acumulador = ``;
 
-    catalogo.forEach(elementCatalogo => {
+    catalogo.forEach(producto => {
     
     acumulador +=  `<div class="col-lg-4 col-md-6 mb-4">
     <div class="card h-100">
-        <a href="#"><img class="card-img-top" src= "${elementCatalogo.imagen}" alt=""></a>
+        <a href="#"><img class="imgAnimate card-img-top" src= "${producto.imagen}" alt=""></a>
         <div class="card-body">
             <h4 class="card-title">
-                <a href="#">${elementCatalogo.nombre}</a>
+                <a href="#">${producto.nombre}</a>
             </h4>
-            <h5>$${elementCatalogo.precio}</h5>
-            <p class="card-text">${elementCatalogo.detalle}</p>
+            <h5>$${producto.precio}</h5>
+            <p class="card-text">${producto.detalle}</p>
         </div>
         <div class="card-footer">
-        <button onclick='agregarAlCarrito(${elementCatalogo.precio}, ${elementCatalogo.stock})'>Agregar</button>
+        <button onclick='agregarAlCarrito(${producto.precio}, ${producto.stock})'>Agregar</button>
         </div>
         </div>
     </div> `;  
+    
     })
     return $('#productos').html(acumulador);
     
@@ -135,6 +137,7 @@ function agregarAlCarrito(precio, stock){
     }
     console.log(carrito)
     localStorage.setItem('carrito', JSON.stringify(carrito))
+    $('#cantidad').html(totalCarrito)
 }
 function validarStock(stock){
     return stock > 0;
@@ -247,6 +250,19 @@ function removerAcentos(string){
     return string.normalize("NFD").replace(/[\u0300-\u036f]/g, "");
 } 
 
+//* desafio 12 JQuery */
+$(".jqueryDesafio").change(function (e) { 
+    console.log(e.target.value);
+    console.log(this.value);
+});
+
+$(document).ready(function(){
+    $("select").on({
+        mouseenter: function(){
+        $(this).css("background-color", "#14364238");
+        },  
+    });
+});
 
 //* uso de DOM para desafío 8 *//
 
@@ -254,12 +270,13 @@ $('em:last').append(`<br>¡Sé parte del cambio!`).css({'color':'#143642', 'font
 
 
 //* FORMULARIO DE COMPRA - desafio 9 *//
-let nombre = "";
+
+let nombreForm = "";
 let apellido = "";
 let direccion= "";
 let telefono= "";
 let email= "";
-const formulario = document.getElementById("formularioCompra")
+const formulario = document.getElementById("formularioCompra");
 
 let input1  = document.getElementById("nombre");
 let input2  = document.getElementById("direccion");
@@ -269,7 +286,7 @@ input2.onkeydown = () => {console.log("keyDown")};
 formulario.addEventListener("submit", function(e){
     e.preventDefault()
     formulario.classList.add("was-validated")
-    document.getElementById("nombre").value= nombre
+    document.getElementById("nombre").value= nombreForm
     document.getElementById("direccion").value = direccion 
     if(formulario.checkValidity()===false){
         return false
@@ -277,6 +294,7 @@ formulario.addEventListener("submit", function(e){
     resumen ()
     mostrarResumen ()
     }
+    
 })
 
 document.getElementById("botonEnviar").addEventListener('click', enviarDatos);
