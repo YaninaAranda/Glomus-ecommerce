@@ -1,7 +1,9 @@
-$('nav.nav-class').css({'background-color':'#143642', 'height': '100px'})
+$('nav.nav-class').css({'background-color':'#143642', 'height': '100px', 'box-shadow':'2px 2px 20px #081418ce'}).slideDown(1000)
 $('button').css({'padding': '0.5vw', 'background-color':'#143642', 'color': 'white', 'border-radius': '1px'})
 
-//* Función para el Ingreso - Modal *//
+
+//* Función para el Registro a través de la creación de un Modal *//
+
 let registroAbrir = document.getElementById('botonRegistro');
 let registroCerrar = document.getElementById('aceptar');
 
@@ -23,12 +25,14 @@ contenedorModal.addEventListener('click', ()=> {
     registroCerrar.click()
 })
 
-//* MOSTRAR IDENTIDAD EN NAVEGADOR *//
+
+//* MOSTRAR IDENTIDAD EN EL NAVEGADOR *//
+
 let btn = document.getElementById("aceptar");
     
     btn.addEventListener('click', () => {
         let usuario = document.getElementById("nombre").value;
-        let sexo = document.getElementById("sexo").value;
+        let sexo = document.getElementById("sexo").value; // se usará para obtener respuesta de bienvenida con un IF
         let acumuladorHola = ``;
         let auxiliar;
         if ((sexo) == `f` || (sexo) == `F` ){
@@ -46,73 +50,61 @@ let btn = document.getElementById("aceptar");
     
     })  
 
+
+//* Utilizó datos Json estáticos y los traigo a las cards - Desafío 14 *//
+
 let totalCarrito = 0;
-let catalogo = [];
+let stockProductos = [];
 
-//*Constructor para productos *//
-class modelo{
-    constructor (id, imagen, nombre, detalle, precio, stock){
-        this.id = id;
-        this.imagen = imagen;
-        this.nombre = nombre;
-        this.detalle = detalle;
-        this.precio = precio;
-        this.stock = stock;
-    }
+let obtenerProductos = async() =>{
+    let response = await fetch ("./datos.json");
+    let data = await response.json();
+
+    stockProductos = data
+    printCatalogo(stockProductos)
 }
+obtenerProductos()
 
-let lenga = new modelo(1, '/imagenes/modeloLenga.jpg','Modelo LENGA', 'Velador cubo nórdico, incluye lámpara vintage', 1500, 4);
-let acacia = new modelo(2, '/imagenes/modeloAcacia.jpg','Modelo ACACIA', 'Maceta cubo nórdica', 400, 2);
-let calden = new modelo(3, '/imagenes/modeloCalden.jpg','Modelo CALDÉN', 'Maceta cuadrada, ideal para suculentas o aromáticas', 400, 1);
-let maiten = new modelo(4, '/imagenes/modeloMaiten.jpg','Modelo MAITÉN', 'Maceta rectangular, ideal para suculentas o aromáticas', 600, 1);
-let cipres = new modelo(5, '/imagenes/modeloCipres.jpg','Modelo CIPRÉS', 'Perchero rústico con ganchos metálicos', 500, 1);
-let alamo = new modelo(6, '/imagenes/modeloAlamo.jpg','Modelo ÁLAMO', 'Portamaceta nórdico, incluye maceta de plástico nº18', 1500, 1);
-let ambay = new modelo(7, '/imagenes/modeloAmbay.jpg','Modelo AMBAY', 'Minimaceta doble', 400, 1);
-let nogal = new modelo(8, '/imagenes/modeloNogal.jpg','Modelo NOGAL', 'Organizador multipróposito', 1500, 1);
-let ombu = new modelo(9, '/imagenes/modeloOmbu.jpg','Modelo OMBÚ', 'Soporte para auriculares', 600, 1);
-catalogo.push(lenga);
-catalogo.push(acacia);
-catalogo.push(calden);
-catalogo.push(maiten);
-catalogo.push(cipres);
-catalogo.push(alamo);
-catalogo.push(ambay);
-catalogo.push(nogal);
-catalogo.push(ombu);
 
 //* Card de productos *//
-function printCatalogo(catalogo){
-    let acumulador = ``;
 
-    catalogo.forEach(producto => {
+
+let catalogo = [];
+let contenedorProductos = document.getElementById('productos')
+
+function printCatalogo(catalogo){
     
-    acumulador +=  `<div class="col-lg-4 col-md-6 mb-4">
-    <div class="card h-100">
+    contenedorProductos.innerHTML = ``
+    let acumulador= ``;
+
+    catalogo.forEach((producto) => {
+            
+    acumulador +=  `<div class="cardStyle col-lg-4 col-md-6 mb-4">
+    <div class=" card h-100">
         <a href="#"><img class="imgAnimate card-img-top" src= "${producto.imagen}" alt=""></a>
         <div class="card-body">
             <h4 class="card-title">
-                <a href="#">${producto.nombre}</a>
+                <a href="#" class="card-title">${producto.nombre}</a>
             </h4>
             <h5>$${producto.precio}</h5>
             <p class="card-text">${producto.detalle}</p>
         </div>
         <div class="card-footer">
-        <button onclick='agregarAlCarrito(${producto.precio}, ${producto.stock})'>Agregar</button>
+        <button class="card-style" onclick='agregarAlCarrito(${producto.precio}, ${producto.stock})'>Agregar</button>
         </div>
         </div>
     </div> `;  
-    
     })
     return $('#productos').html(acumulador);
-    
 }
 printCatalogo(catalogo);
-$('button').css({'backgroundColor':'#143642', 'color': 'white', 'padding':'0.2em 1em'})
+
+
 
 //* Condicional para precargar datos en Storage *//
-let carrito = [];
-let valorDelCarritoEnStorage = JSON.parse(localStorage.getItem('carrito'));
 
+let valorDelCarritoEnStorage = JSON.parse(localStorage.getItem('carrito'));
+let carrito = [];
 if(valorDelCarritoEnStorage == null){
 
     carrito = carritoEnLocalStorage
@@ -123,10 +115,14 @@ console.log(carrito)
 
 
 //* Función agregar al carrito *//
+
+let cantidad = 0
+
 function agregarAlCarrito(precio, stock){
     let tieneStock = validarStock(stock);
     if (tieneStock){
     totalCarrito += precio;
+    cantidad ++;
 
     localStorage.getItem('catalogo', catalogo);
     localStorage.catalogo = JSON.stringify(catalogo)
@@ -137,7 +133,7 @@ function agregarAlCarrito(precio, stock){
     }
     console.log(carrito)
     localStorage.setItem('carrito', JSON.stringify(carrito))
-    $('#cantidad').html(totalCarrito)
+    $('#cantidad').html(cantidad)
 }
 function validarStock(stock){
     return stock > 0;
@@ -250,12 +246,8 @@ function removerAcentos(string){
     return string.normalize("NFD").replace(/[\u0300-\u036f]/g, "");
 } 
 
-//* desafio 12 JQuery */
-$(".jqueryDesafio").change(function (e) { 
-    console.log(e.target.value);
-    console.log(this.value);
-});
 
+//* asignando eventos a elementos del DOM con JQuery */
 $(document).ready(function(){
     $("select").on({
         mouseenter: function(){
@@ -263,10 +255,6 @@ $(document).ready(function(){
         },  
     });
 });
-
-//* uso de DOM para desafío 8 *//
-
-$('em:last').append(`<br>¡Sé parte del cambio!`).css({'color':'#143642', 'fontWeight': 'bolder' })
 
 
 //* FORMULARIO DE COMPRA - desafio 9 *//
@@ -306,7 +294,7 @@ function enviarDatos(event){
 } 
 
 
-//* creación de Menúes y Submenúes (DESAFIO 9 COMPLEMENTARIO) *//
+//* creación de Submenúes *//
 let titulos = new Array();
 let enlaces = new Array();
 
@@ -361,29 +349,14 @@ window.onload = function() {
             oculta.style.display="none";
             }
 
+/* AJAX */
+ 
+            
+/* Animaciones para aparecer el menú */
 
-/*             function filtrarPorRemeras(categoriaAFiltrar) {
-                let productosFiltrados = productos.filter((element) => {
-                  return element.category == "Remeras";
-                });
-                let acumulador = ``;
-                productosFiltrados.forEach((element) => {
-                  acumulador += `<h1>${element.name}</h1>`;
-                });
-                $("#root").html(acumulador);
-              }
-              function filtrarPorZapas() {
-                let productosFiltrados = productos.filter(
-                  (element) => element.category == "Zapas"
-                );
-                let acumulador = ``;
-                productosFiltrados.forEach((element) => {
-                  acumulador += `<h1>${element.name}</h1>`;
-                });
-                $("#root").html(acumulador);
-              }
 
-*/
+
+
 
 
   // Mostrar card :)

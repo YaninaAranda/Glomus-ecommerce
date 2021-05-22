@@ -6,6 +6,7 @@
 
 body {
   padding-top: 56px;
+  font-family: 'Merriweather', serif;
 }
 
 ul{
@@ -37,6 +38,12 @@ h3{
   justify-self:self-end;
   border: none;
   color: white;
+  
+}
+
+input{
+  padding-left: 0.5vw;
+  color: #143642;
 }
 
 .imgLogo{
@@ -152,3 +159,48 @@ h3{
   border: #143642ce 2px solid;
 }
 
+.img-slide{
+  width: 100%;
+  margin-top: 1vw;
+}
+
+.cardStyle:hover{
+  transform: scale(1.1 , 1.1);
+  box-shadow: 2px 2px 5px #999;;
+  z-index: 100;
+}
+
+.card-title{
+  color: #143642;
+  font-weight:600;
+}
+
+.card-title:hover{
+  text-decoration: none;
+  color: #9e5807;
+}
+
+.table-style{
+  border: solid 1px #ffffff;
+  background-color: #143642c2;
+  padding: 0.75rem;
+  display: table-cell;
+  border-spacing: 2px;
+  border-collapse: collapse;
+  color: #ffffff;
+  text-align: center;
+  width: 100%;
+  margin-bottom: 1rem;
+}
+
+th{
+  padding: 0vw 4vw;
+  font-weight: normal;
+}
+
+.card-style{
+  background-color:#143642;
+  color: white; 
+  padding: 0.2em 1em
+
+}
