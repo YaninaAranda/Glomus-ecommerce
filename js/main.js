@@ -1,16 +1,32 @@
-$('nav.nav-class').css({'background-color':'#143642', 'height': '100px', 'box-shadow':'2px 2px 20px #081418ce'}).slideDown(1000)
-$('button').css({'padding': '0.5vw', 'background-color':'#143642', 'color': 'white', 'border-radius': '1px'})
+$('nav.nav-class').css({'padding-left': '10vw','background-color':'#143642','width':'100%','height': '100px', 'box-shadow':'0px 10px 20px #081418ce'}).slideDown(1000)
+$('button').css({'padding': '0.5vw 1vw', 'background-color':'#143642', 'color': 'white', 'border-radius': '1px'})
 
 
-//* Función para el Registro a través de la creación de un Modal *//
 
+/* VARIABLES GLOBALES*/
 let registroAbrir = document.getElementById('botonRegistro');
 let registroCerrar = document.getElementById('aceptar');
-
-
 let contenedorModal = document.getElementsByClassName('modal-contenedor')[0]
 let modalDatos = document.getElementsByClassName('modal-datos')[0]
+let btn = document.getElementById("aceptar");
+const contenedorProductos = document.getElementById('productos')
+const contenedorCarrito = document.getElementById('items')
+const totalCarrito = document.getElementById("totalCarrito")
+const btnVaciarCarrito = document.querySelector("#vaciar-carrito");
+const totalProductos = document.getElementById("totalProductos");
+const storageCarrito = localStorage.getItem('carrito');
+const storageIdentidad = localStorage.getItem('nombre');
+const totalProductos_badge = document.getElementById("cantidad");
+let carrito = [];
+let catalogo = [];
+let cantidad = 0;
 
+
+//* PRIMER ACCIÓN DEL USUARIO: REGISTRARSE*//
+if (storageIdentidad != null){
+    usuario = [JSON.parse(storageIdentidad)];
+}
+//* Click y Registro a través de la creación de un Modal *//
 
 registroAbrir.addEventListener('click', ()=> {
     contenedorModal.classList.toggle('modal-active')
@@ -26,9 +42,8 @@ contenedorModal.addEventListener('click', ()=> {
 })
 
 
-//* MOSTRAR IDENTIDAD EN EL NAVEGADOR *//
+//* Mostrar identidad en el navegador *//
 
-let btn = document.getElementById("aceptar");
     
     btn.addEventListener('click', () => {
         let usuario = document.getElementById("nombre").value;
@@ -44,56 +59,46 @@ let btn = document.getElementById("aceptar");
         } else {
             auxiliar =`Ingrese identidad válida`;
         }
-        acumuladorHola += `<h5 class="ingresar"> Hola ${usuario}! ${auxiliar}</h5>`;
+        acumuladorHola += `<h5 class="ingresar"> ¡Hola ${usuario}! ${auxiliar}</h5>`;
         
         $('.ingresar').replaceWith(acumuladorHola);
-    
-    })  
+    }) 
 
 
-//* Utilizó datos Json estáticos y los traigo a las cards - Desafío 14 *//
+//* MOSTRAR CARDS *//
 
-let totalCarrito = 0;
-let stockProductos = [];
-
+//* Petición AJAX: Utilizó datos Json estáticos y los traigo a las cards  *//
 let obtenerProductos = async() =>{
     let response = await fetch ("./datos.json");
     let data = await response.json();
 
-    stockProductos = data
-    printCatalogo(stockProductos)
+    catalogo = data
+    printCatalogo(catalogo)
 }
 obtenerProductos()
 
-
 //* Card de productos *//
-
-
-let catalogo = [];
-let contenedorProductos = document.getElementById('productos')
-
 function printCatalogo(catalogo){
-    
-    contenedorProductos.innerHTML = ``
     let acumulador= ``;
-
+    
     catalogo.forEach((producto) => {
-            
-    acumulador +=  `<div class="cardStyle col-lg-4 col-md-6 mb-4">
-    <div class=" card h-100">
+
+        acumulador +=  `<div class="cardStyle col-lg-4 col-md-6 mb-4"
+        <div class=" card h-100">
         <a href="#"><img class="imgAnimate card-img-top" src= "${producto.imagen}" alt=""></a>
         <div class="card-body">
             <h4 class="card-title">
                 <a href="#" class="card-title">${producto.nombre}</a>
             </h4>
-            <h5>$${producto.precio}</h5>
+            <h4 class="card-price">$${producto.precio}</h4>
             <p class="card-text">${producto.detalle}</p>
         </div>
         <div class="card-footer">
-        <button class="card-style" onclick='agregarAlCarrito(${producto.precio}, ${producto.stock})'>Agregar</button>
+        <button class="card-style" onclick='agregarAlCarrito(${producto.id})'>Agregar</button>
         </div>
         </div>
-    </div> `;  
+    </div> `; 
+    
     })
     return $('#productos').html(acumulador);
 }
@@ -101,66 +106,93 @@ printCatalogo(catalogo);
 
 
 
-//* Condicional para precargar datos en Storage *//
-
-let valorDelCarritoEnStorage = JSON.parse(localStorage.getItem('carrito'));
-let carrito = [];
-if(valorDelCarritoEnStorage == null){
-
-    carrito = carritoEnLocalStorage
-}else{
-    localStorage.setItem('carrito', JSON.stringify(carrito))
-}
-console.log(carrito)
-
-
 //* Función agregar al carrito *//
-
-let cantidad = 0
-
-function agregarAlCarrito(precio, stock){
-    let tieneStock = validarStock(stock);
-    if (tieneStock){
-    totalCarrito += precio;
-    cantidad ++;
-
-    localStorage.getItem('catalogo', catalogo);
-    localStorage.catalogo = JSON.stringify(catalogo)
-    console.log(`Se agrego un nuevo producto al carrito. El total es: $${totalCarrito}`);
+function agregarAlCarrito(itemId){
+    let itemEnCarrito = carrito.find(el => el.id == itemId)
+    if (itemEnCarrito){
+        itemEnCarrito.cantidad += 1
+        
+    } else{
+        let {imagen, nombre, cantidad, precio, id} = catalogo.find( el => el.id == itemId )
+        carrito.push({imagen: imagen, nombre: nombre, cantidad: 1, precio: precio, id: id})
     }
-    else{
-    console.log(`No hay stock`);
-    }
-    console.log(carrito)
     localStorage.setItem('carrito', JSON.stringify(carrito))
-    $('#cantidad').html(cantidad)
+    console.log(itemId);
+    actualizarCarrito()
 }
-function validarStock(stock){
-    return stock > 0;
-} 
 
-//* cálculo del envio *//
+function eliminarProducto(id) {
+    let productoAEliminar = carrito.find( el => el.id == id )
 
+    productoAEliminar.cantidad--
 
-function costoEnvio(){
-    let elegirZona = document.getElementById("ubicación").value
-    let aux;
-    if ((elegirZona) == `zo` || (elegirZona) == `ZO` ){
-        aux = `El costo de envío es $ ` + 400;
-    } else if ((elegirZona) == `ze` || (elegirZona) == `ZE`){
-        aux = `El costo de envío es $ ` + 600;
-    } else if ((elegirZona) == `zn` || (elegirZona) == `ZN`){
-        aux = `El costo de envío es $ ` + 800;
-    } else if ((elegirZona) == `zs` || (elegirZona) == `ZS`){
-        aux = `El costo de envío es $ ` + 600;
-    } else if ((elegirZona) == `caba` || (elegirZona) == `CABA`){
-        aux = `El costo de envío es $ ` + 600;
-    } else {
-        aux =`No hacemos envíos en esa zona`;
+    if (productoAEliminar.cantidad == 0) {
+        let indice = carrito.indexOf(productoAEliminar)
+        carrito.splice(indice, 1)
     }
-    $('#envio').html(aux)
-    
+
+    console.log(carrito)
+    actualizarCarrito()
 }
+
+
+//* Mostrar los productos elegidos en el submenú del boton Carrito *//
+
+
+function actualizarCarrito() {
+    let sumaCarrito = 0;
+	let cantidadProductos = 0;
+    contenedorCarrito.innerHTML=''
+
+    carrito.forEach( (producto) => {
+        const { imagen, nombre,  cantidad, precio, id } = producto;
+
+		const row = document.createElement('tr');
+		row.innerHTML= `<td><img src="${imagen}" width=70></td>
+			<td>${nombre}</td>
+			<td  class="cantidad-carrito" min="1" value="${cantidad}"></td>
+			<td> <span class="precio">$${precio}</td>
+			<td></td>
+			<td><button onclick=eliminarProducto(${id}) class="boton-eliminar"><i class="fas fa-trash-alt"></i></button></td>
+            `
+            contenedorCarrito.appendChild(row);
+			cantidadProductos += cantidad;
+			console.log(precio);
+			sumaCarrito += (precio * cantidad);	
+});
+    totalCarrito.innerHTML = `$${sumaCarrito}`;
+    totalProductos.innerHTML = `${cantidadProductos}`;
+    totalProductos_badge.innerHTML = `${cantidadProductos}`;
+};
+actualizarCarrito()
+
+if (storageCarrito != null){
+    carrito = [JSON.parse(storageCarrito)];
+}
+
+carrito = JSON.parse(localStorage.getItem('items')) || [];
+
+//* VACIAR CARRITO *//
+
+btnVaciarCarrito.addEventListener('click', () => {
+    totalCarrito.innerHTML = `$0`;
+    totalProductos.innerHTML = `0`;
+    totalProductos_badge.innerHTML = `0`;
+    contenedorCarrito.innerHTML = null
+});
+
+//* Mostrar-Ocultar submenú para botón carrito *//
+$(".submenu").on({
+    'mouseover': function (e) {
+        $(".submenu #carrito").slideDown('slow');
+    },
+    'mouseleave': function () {
+        $(".submenu #carrito").slideUp('slow');
+    }
+})
+
+
+//* FUNCIONES ACCESORIAS *//
 
 //*función para ordenar productos *//
 
@@ -248,6 +280,7 @@ function removerAcentos(string){
 
 
 //* asignando eventos a elementos del DOM con JQuery */
+
 $(document).ready(function(){
     $("select").on({
         mouseenter: function(){
@@ -256,45 +289,7 @@ $(document).ready(function(){
     });
 });
 
-
-//* FORMULARIO DE COMPRA - desafio 9 *//
-
-let nombreForm = "";
-let apellido = "";
-let direccion= "";
-let telefono= "";
-let email= "";
-const formulario = document.getElementById("formularioCompra");
-
-let input1  = document.getElementById("nombre");
-let input2  = document.getElementById("direccion");
-input1.onkeyup   = () => {console.log("keyUp")};
-input2.onkeydown = () => {console.log("keyDown")};
-
-formulario.addEventListener("submit", function(e){
-    e.preventDefault()
-    formulario.classList.add("was-validated")
-    document.getElementById("nombre").value= nombreForm
-    document.getElementById("direccion").value = direccion 
-    if(formulario.checkValidity()===false){
-        return false
-    } else{
-    resumen ()
-    mostrarResumen ()
-    }
-    
-})
-
-document.getElementById("botonEnviar").addEventListener('click', enviarDatos);
-
-function enviarDatos(event){
-    console.log('se envio formulario');
-    console.log(event);
-    console.log(event.target.value);
-} 
-
-
-//* creación de Submenúes *//
+//* Creación de Submenúes *//
 let titulos = new Array();
 let enlaces = new Array();
 
@@ -332,36 +327,32 @@ window.onload = function() {
         submenu[i].style.display="none";	
     }
 
-    /* uso de eventos onmouseover - onmouseout*/
+/* uso de eventos onmouseover - onmouseout*/
     
-    for (i=0;i<titulos.length;i++) {
-        menu[i].onmouseover = ver;
-        menu[i].onmouseout = ocultar;
-        } 
+for (i=0;i<titulos.length;i++) {
+    menu[i].onmouseover = ver;
+    menu[i].onmouseout = ocultar;
+    } 
 }
-        function ver() {
-            muestra=this.getElementsByTagName("div")[0];
-            muestra.style.display="block";
-            }
+function ver() {
+    muestra=this.getElementsByTagName("div")[0];
+    muestra.style.display="block";
+}
 
-    function ocultar() {
-            oculta=this.getElementsByTagName("div")[0];
-            oculta.style.display="none";
-            }
-
-/* AJAX */
- 
-            
-/* Animaciones para aparecer el menú */
+function ocultar() {
+    oculta=this.getElementsByTagName("div")[0];
+    oculta.style.display="none";
+}
 
 
 
 
 
 
-  // Mostrar card :)
-  // Mostrar el total de lo agregado al carrito :(
-  // Mostrar los productos agregados al carrito :(
-  // El boton de agregar al carrito en la card del producto :/
-  // Borrar producto del carrito
+
+  // Mostrar card :) 
+  // Mostrar el total de lo agregado al carrito 
+  // Mostrar los productos agregados al carrito 
+  // El boton de agregar al carrito en la card del producto :)
+  // Borrar producto del carrito :)
   // Pagar con mercadopago 

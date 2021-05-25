@@ -12,7 +12,7 @@
 
   <link rel="preconnect" href="https://fonts.gstatic.com">
   <link href="https://fonts.googleapis.com/css2?family=Merriweather&display=swap" rel="stylesheet">
-
+  <script src="https://kit.fontawesome.com/242764db17.js" crossorigin="anonymous"></script>
   <!-- Bootstrap core CSS -->
   <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
   
@@ -25,7 +25,7 @@
 <body>
 
   <!-- Navegador -->
-  <nav id="animate" class="nav-class navbar navbar-expand-lg navbar-dark fixed-top" style="display: none">
+  <nav id="animate" class="nav-class navbar navbar-expand-lg navbar-dark fixed-top" >
     <div class="nav-container">
       <a class="navbar-brand" href="index.html"><img class="imgLogo" src="imagenes/logo.png"></a>
 
@@ -33,19 +33,51 @@
         <span class="navbar-toggler-icon"></span>
       </button>
       
-      <button id="botonRegistro" class="formatos_btn ingresar boton-ingreso"><h5>Registrate</h5></button>
-      
-      <div class="changuito">
-        <i id="checkout" role="button" aria-hidden="true"><a href="comprar.html"><img class="img-carrito" src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZlcnNpb249IjEuMSIgeG1sbnM6eGxpbms9Imh0dHA6Ly93d3cudzMub3JnLzE5OTkveGxpbmsiIHhtbG5zOnN2Z2pzPSJodHRwOi8vc3ZnanMuY29tL3N2Z2pzIiB3aWR0aD0iNTEyIiBoZWlnaHQ9IjUxMiIgeD0iMCIgeT0iMCIgdmlld0JveD0iMCAwIDUxMS4zOTMgNTExLjM5MyIgc3R5bGU9ImVuYWJsZS1iYWNrZ3JvdW5kOm5ldyAwIDAgNTEyIDUxMiIgeG1sOnNwYWNlPSJwcmVzZXJ2ZSIgY2xhc3M9IiI+PGc+PHBhdGggeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiBkPSJtNDkwLjM2IDEyOC4wNTdoLTEwNy43ODFjMS43NDctMi4yMDkgMi45NzEtMy42NTMgNS40MjktNi42NjggMjQuMTY3LTI5LjY0NCAyMS45ODEtNzIuNDE2LTUuMDktOTkuNTAxLTMwLjgwOC0zMC43OTItNzcuOTA0LTI3LjY3LTEwNS44OTYuNjM5LTI3LjgzOS0yOC4xNTMtNzQuODg1LTMxLjYzNy0xMDUuOTAzLS42MzMtMjcuMDY1IDI3LjA3OC0yOS4yNSA2OS44NTEtNS4wODQgOTkuNDkzIDIuNzg2IDMuNDA0IDMuOTA3IDQuNzUzIDUuNDEyIDYuNjY5aC04MC44OThsLTUuOTQzLTY2LjIwOGMtLjk3Mi0xMC44MjYtMTAuMDQ1LTE5LjEyMS0yMC45MTYtMTkuMTIxaC00Mi42NjZjLTExLjU5OCAwLTIxIDkuNDAyLTIxIDIxczkuNDAyIDIxIDIxIDIxaDIzLjQ2N2MxLjM1MyAxNS4wNzMgMjQuMTQ5IDI2OS4wOTQgMjQuMjA4IDI2OS42MTggMi41NTEgMjIuMTEgMTMuODUxIDQxLjI2NyAzMC4xOSA1NC4yMS0zMi41NDYgNDEuNTYzLTIuODExIDEwMi44MzkgNTAuMTM1IDEwMi44MzkgNDMuOTY2IDAgNzQuOTI1LTQzLjg1MyA1OS44NjUtODUuMzM0aDExNC45MzZjLTE1LjA1IDQxLjQ1NSAxNS44NzcgODUuMzM0IDU5Ljg2NSA4NS4zMzQgMzUuMTA2IDAgNjMuNjY3LTI4LjU2MSA2My42NjctNjMuNjY3cy0yOC41NjEtNjMuNjY3LTYzLjY2Ny02My42NjdoLTIzNC41MjVjLTE1Ljk1MiAwLTI5Ljg1My05LjYyNC0zNS44NTQtMjMuNjQ2bDMzNS42MS0xOS43MjRjOS4xNjMtLjUzOCAxNi45MTUtNi45NjYgMTkuMTQxLTE1Ljg3bDQyLjY3LTE3MC42N2MzLjMxNy0xMy4yNjItNi43MzUtMjYuMDkzLTIwLjM3Mi0yNi4wOTN6bS0yODkuNTQyLTc2LjQ2NGMyMC41MzYtMjAuNTI3IDU1LjIwNC01LjYyOCA1NS4yMDQgMjIuODU3IDAgMTEuNTk4IDkuNDAyIDIxIDIxIDIxczIxLTkuNDAyIDIxLTIxYzAtMTMuNDU3IDcuNTA4LTI0LjYwMyAyMC4wODQtMjkuODEzIDMxLjA0Ni0xMi44NiA1OC4zOTEgMjQuNDAyIDM3LjM0OSA1MC4yMTMtMTAuMTE4IDEyLjQxNC0uNjQ0LS4wNS03OC43NDQgMTA0LjQ0LTc1LjMxNy0xMDEuNjE3LTY4LjQ4OC05Mi42Ny03OC4xMjMtMTA0LjQ0LTEwLjUwMS0xMi44ODItOS41NC0zMS40ODIgMi4yMy00My4yNTd6bS01MS43OTQgNDE3LjhjLTExLjk0NyAwLTIxLjY2Ny05LjcyLTIxLjY2Ny0yMS42NjdzOS43Mi0yMS42NjcgMjEuNjY3LTIxLjY2NyAyMS42NjcgOS43MiAyMS42NjcgMjEuNjY3LTkuNzIxIDIxLjY2Ny0yMS42NjcgMjEuNjY3em0yMzQuNjY2IDBjLTExLjk0NyAwLTIxLjY2Ny05LjcyLTIxLjY2Ny0yMS42NjdzOS43Mi0yMS42NjcgMjEuNjY3LTIxLjY2NyAyMS42NjcgOS43MiAyMS42NjcgMjEuNjY3LTkuNzIgMjEuNjY3LTIxLjY2NyAyMS42Njd6bTQ3LjM2OS0xNjkuNzI1LTMyMy4zOTkgMTkuMDA1LTEzLjM0LTE0OC42MTdoMTA4LjQ2YzE2Ljg5MyAyMi44MDMgMzIuMjU2IDQzLjU0NyA1Ni45OTIgNzYuOTA4IDguMzgxIDExLjMwMyAyNS4yODcgMTEuMzAyIDMzLjY4OC4wNjcgMjQuNjM1LTMyLjk0OSAzOS4zODUtNTIuNjk2IDU3LjUyOC03Ni45NzZoMTEyLjQ3N3oiIGZpbGw9IiNmZmZmZmYiIGRhdGEtb3JpZ2luYWw9IiMwMDAwMDAiIHN0eWxlPSIiIGNsYXNzPSIiPjwvcGF0aD48L2c+PC9zdmc+"></a></i>
-        <b id="cantidad" style="color: white;">0</b>
+      <button id="botonRegistro" class="ingresar formatos_btn boton-ingreso"><h5>Registrate</h5></button>
+      <div class="two columns u-pull-right">
+        <ul>
+          <li class="submenu">
+            <i class="carritoImg fas fa-grip-lines-vertical" aria-hidden="true" id="img-carrito"></i>
+            <i class="carritoImg fa fa-shopping-cart" aria-hidden="true" id="img-carrito"></i>
+            <span id="cantidad" class="cantidadProductos">0</span>
+            <div id="carrito">
+              <table id="lista-carrito" class="u-full-width" style="color: #143642">
+                <thead>
+                  <tr class="tabla-carrito">
+                    <th>Producto</th>
+                    <th></th>
+                    <th class="cant">Cantidad</th>
+                    <th class="precio">Precio</th>
+                    <th></th> 
+                    <th><i class="fa fa-trash th-m-elim" aria-hidden="true" style="color: #143642"></i></th>
+                  </tr>
+                </thead>
+                <tbody id="items"></tbody>
+                <tfoot>
+                  <tr id="footer_tb" class="tabla-carrito">
+                    <th>total productos:</th>
+                    <th></th>
+                    <th id="totalProductos"></th>
+                    <th id="totalCarrito"><span>0</span></th>
+                    <th></th>
+                    <th></th>
+                    <th></th>
+                  </tr>
+                </tfoot>
+              </table>
+              <button id="vaciar-carrito" class="buttonNuevo button u-full-width ">VACIAR CARRITO</button>
+              <button id="finalizar-carrito" class="buttonNuevo button btn-finalizar u-full-width "><a href="#" style="color: #fff">PROCESAR COMPRA</a></button>
+            </div>
+          </li>
+        </ul>
       </div>
       
       <div id="navegador" class="navegador collapse navbar-collapse" >
         <ul>
           <li id="menuNav0" class="menu-class"><a href="#">Nosotros</a></li>
           <li id="menuNav1" class="menu-class"><a href="#">Catálogo</a></li>
-          <li id="menuNav2" class="menu-class"><a href="#">Blog</a></li>
-          <li id="menuNav3" class="menu-class"><a href="#">Contacto</a></li> 
+          <li class="menu-class"><a href="#">Blog</a></li>
+          <li class="menu-class"><a href="#">Contacto</a></li> 
         </ul>
         <div class="borrar"></div>
       </div>
@@ -67,7 +99,7 @@
 
   <!-- Page Content -->
 
-
+      <div id="contenedorMain">
         <div id="carouselExampleIndicators" class="carousel slide my-4" data-ride="carousel">
           <ol class="carousel-indicators">
             <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
@@ -112,7 +144,7 @@
           </div>
         </div>
         <div class="row" id="productos" ></div>
-
+      </div>  
         <!-- /.row -->
 
       </div>

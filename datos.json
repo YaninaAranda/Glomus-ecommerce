@@ -1,6 +1,6 @@
 [
     {
-        "id": 0,
+        "id": 1,
         "imagen": "/imagenes/modeloLenga.jpg", 
         "nombre": "Modelo LENGA", 
         "detalle": "Velador cubo nórdico, incluye lámpara vintage", 
@@ -8,7 +8,7 @@
         "stock": 4
     },
     {
-        "id": 1,
+        "id": 2,
         "imagen": "/imagenes/modeloAcacia.jpg", 
         "nombre": "Modelo ACACIA", 
         "detalle": "Maceta cubo nórdica", 
@@ -16,7 +16,7 @@
         "stock": 2
     },
     {
-        "id": 2,
+        "id": 3,
         "imagen": "/imagenes/modeloCalden.jpg", 
         "nombre": "Modelo CALDÉN", 
         "detalle": "Maceta cuadrada, ideal para suculentas o aromáticas", 
@@ -24,7 +24,7 @@
         "stock": 1
     },
     {
-        "id": 3,
+        "id": 4,
         "imagen": "/imagenes/modeloMaiten.jpg", 
         "nombre": "Modelo MAITÉN", 
         "detalle": "Maceta rectangular, ideal para suculentas o aromáticas", 
@@ -32,7 +32,7 @@
         "stock": 1
     },
     {
-        "id": 4,
+        "id": 5,
         "imagen": "/imagenes/modeloCipres.jpg", 
         "nombre": "Modelo CIPRÉS", 
         "detalle": "Perchero rústico con ganchos metálicos", 
@@ -40,7 +40,7 @@
         "stock": 1
     },
     {
-        "id": 5,
+        "id": 6,
         "imagen": "/imagenes/modeloAlamo.jpg", 
         "nombre": "Modelo ÁLAMO", 
         "detalle": "Portamaceta nórdico, incluye maceta de plástico nº18", 
@@ -48,7 +48,7 @@
         "stock": 1
     },
     {
-        "id": 6,
+        "id": 7,
         "imagen": "/imagenes/modeloAmbay.jpg", 
         "nombre": "Modelo AMBAY", 
         "detalle": "Minimaceta doble", 
@@ -56,7 +56,7 @@
         "stock": 1
     },
     {
-        "id": 7,
+        "id": 8,
         "imagen": "/imagenes/modeloNogal.jpg", 
         "nombre": "Modelo NOGAL", 
         "detalle": "Organizador multipróposito", 
@@ -64,7 +64,7 @@
         "stock": 1
     },
     {
-        "id": 8,
+        "id": 9,
         "imagen": "/imagenes/modeloOmbu.jpg", 
         "nombre": "Modelo OMBÚ", 
         "detalle": "Soporte para auriculares", 
