@@ -12,7 +12,6 @@ let btn = document.getElementById("aceptar");
 const contenedorProductos = document.getElementById('productos')
 const contenedorCarrito = document.getElementById('items')
 const totalCarrito = document.getElementById("totalCarrito")
-const btnVaciarCarrito = document.querySelector("#vaciar-carrito");
 const totalProductos = document.getElementById("totalProductos");
 const totalProductos_badge = document.getElementById("cantidad");
 let catalogo = [];
@@ -56,9 +55,10 @@ contenedorModal.addEventListener('click', ()=> {
         } else {
             auxiliar =`Ingrese identidad válida`;
         }
-        acumuladorHola += `<h5 class="ingresar"> ¡Hola ${usuario}! ${auxiliar}</h5>`;
+        acumuladorHola += `<h5 class="ingresar" style="padding-top: 0.7vw"> ¡Hola ${usuario}! ${auxiliar}</h5>`;
         
         $('.ingresar').replaceWith(acumuladorHola);
+
     }) 
 
 
@@ -101,6 +101,9 @@ function printCatalogo(catalogo){
 }
 printCatalogo(catalogo);
 
+
+//*Guardar datos en Storage *// 
+
 if (storageCarrito != null){
     carrito = JSON.parse(localStorage.getItem('carrito'));
 }
@@ -108,20 +111,22 @@ if (storageCarrito != null){
 
 catalogo = JSON.parse(localStorage.getItem('productos')) || [];
 
-//* Función agregar al carrito *//
+//* Función para agregar productos al carrito *//
 function agregarAlCarrito(itemId){
     let itemEnCarrito = carrito.find(el => el.id == itemId)
     if (itemEnCarrito){
         itemEnCarrito.cantidad += 1
         
     } else{
-        let {imagen, nombre, cantidad, precio, id} = catalogo.find( el => el.id == itemId )
+        const {imagen, nombre, precio, id} = catalogo.find( el => el.id == itemId )
         carrito.push({imagen: imagen, nombre: nombre, cantidad: 1, precio: precio, id: id})
     }
     localStorage.setItem('carrito', JSON.stringify(carrito))
-    console.log(itemId);
+    console.log(carrito);
     actualizarCarrito()
 }
+
+//* Función para eliminar productos del carrito *//
 
 function eliminarProducto(id) {
     let productoAEliminar = carrito.find( el => el.id == id )
@@ -134,12 +139,13 @@ function eliminarProducto(id) {
     }
 
     localStorage.setItem('carrito', JSON.stringify(carrito))
-    console.log(carrito)
+
     actualizarCarrito()
 }
 
 
 //* Mostrar los productos elegidos en el submenú del boton Carrito *//
+//* Mostrar el total de lo agregado al carrito *//
 
 function actualizarCarrito() {
     let sumaCarrito = 0;
@@ -147,18 +153,20 @@ function actualizarCarrito() {
     contenedorCarrito.innerHTML=''
 
     carrito.forEach( (producto) => {
-        const { imagen, nombre,  cantidad, precio, id } = producto;
+        const { imagen, nombre, cantidad, precio, id } = producto;
 
 		const row = document.createElement('tr');
 		row.innerHTML= `<td><img src="${imagen}" width=70></td>
 			<td>${nombre}</td>
-			<td  class="cantidad-carrito" min="1" value="${cantidad}"></td>
+			<td class="cant-carr"><input type="number" class="cantidad-carrito" min="1" value="${cantidad}"></td>
 			<td> <span class="precio">$${precio}</td>
 			<td></td>
 			<td><button onclick=eliminarProducto(${id}) class="boton-eliminar"><i class="fas fa-trash-alt"></i></button></td>
             `
             contenedorCarrito.appendChild(row);
 			cantidadProductos += cantidad;
+            
+            
 			console.log(precio);
 			sumaCarrito += (precio * cantidad);	
 });
@@ -170,15 +178,6 @@ actualizarCarrito()
 
 
 
-//* VACIAR CARRITO *//
-
-btnVaciarCarrito.addEventListener('click', () => {
-    totalCarrito.innerHTML = `$0`;
-    totalProductos.innerHTML = `0`;
-    totalProductos_badge.innerHTML = `0`;
-    contenedorCarrito.innerHTML = null
-});
-
 //* Mostrar-Ocultar submenú para botón carrito *//
 $(".submenu").on({
     'mouseover': function (e) {
@@ -188,6 +187,35 @@ $(".submenu").on({
         $(".submenu #carrito").slideUp('slow');
     }
 })
+
+//* Pagar con mercadopago *//
+const finalizarCompra = async () => {
+
+    const carritoAPagar = carrito.map(el => ({
+            title: el.nombre,
+            description: "",
+            picture_url: "",
+            category_id: el.id,
+            quantity: el.cantidad,
+            currency_id: "ARS",
+            unit_price: el.precio
+    }))
+
+    const resp = await fetch('https://api.mercadopago.com/checkout/preferences', 
+    {
+        method: "POST",
+        headers: {
+            Authorization: "Bearer TEST-2001464214734886-052615-8c17e0d3d16f44949e3d138eb66455e8-54816728"
+        },
+        body: JSON.stringify({
+            items: carritoAPagar
+        })
+    })
+
+    const data = await resp.json()
+
+    window.open(data.init_point, "_blank")
+}
 
 
 //* FUNCIONES ACCESORIAS *//
@@ -349,8 +377,8 @@ function ocultar() {
 
 
   // Mostrar card :) 
-  // Mostrar el total de lo agregado al carrito 
-  // Mostrar los productos agregados al carrito 
+  // Mostrar el total de lo agregado al carrito :)
+  // Mostrar los productos agregados al carrito :)
   // El boton de agregar al carrito en la card del producto :)
   // Borrar producto del carrito :)
   // Pagar con mercadopago 

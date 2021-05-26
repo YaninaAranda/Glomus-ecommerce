@@ -34,6 +34,7 @@ h5{
 .ingresar{
   grid-area: ingresar;
   justify-self:self-end;
+  margin-top:-0.5vw;
   border: none;
   color: #ffd7a9;
 }
@@ -88,6 +89,7 @@ input{
 th{
   font-size: 0.8rem;
   padding: 0vw 2vw ;
+  text-align: center;
 }
 
 .cantidadProductos{
@@ -264,15 +266,28 @@ a:hover{
   border-bottom: 1px solid;
 }
 
-.cant-carr{
-  width: 10vw;
+
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+.cantidad-carrito {
   border: none;
+  text-align: center;
+  font-weight: 700;
 }
 
 td{
-  padding: 2vw;
+  padding: 1vw;
+  text-align: center;
 }
 
 .boton-eliminar, .boton-eliminar:hover, .boton-eliminar:visited, .boton-eliminar:active{
   border-style: none;
+}
+
+footer{
+  background-color: #143642;
 }
